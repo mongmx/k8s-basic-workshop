@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myapp-configmap
+data:
+  ENV: local
+  PG_DBNAME: myapp
