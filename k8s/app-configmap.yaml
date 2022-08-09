@@ -4,4 +4,7 @@ metadata:
   name: myapp-configmap
 data:
   ENV: local
+  PG_HOST: postgres-srv
+  PG_PORT: "5432"
+  PG_USER: root
   PG_DBNAME: myapp
