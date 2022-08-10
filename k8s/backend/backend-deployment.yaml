@@ -37,5 +37,5 @@ spec:
         ports:
         - containerPort: 8080
         envFrom:
-          - configMapRef: 
-              name: myapp-configmap
+          - configMapRef:
+              name: postgres-config

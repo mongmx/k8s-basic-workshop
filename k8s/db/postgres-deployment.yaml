@@ -1,40 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-db-depl
+  name: postgres
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: postgres-db
+      app: postgres
   template:
     metadata:
       labels:
-        app: postgres-db
+        app: postgres
     spec:
-      volumes:
-        - name: postgres-db-volume
-          persistentVolumeClaim:
-            claimName: postgres-pvc
       containers:
-      - name: postgres-db
-        image: postgres
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "50m"
-        ports:
-        - containerPort: 5432
-        env:
-          - name: POSTGRES_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: myapp-secret
-                key: PG_PASSWORD
-          - name: POSTGRES_DATABASE
-            valueFrom:
-              configMapKeyRef:
-                name: myapp-configmap
-                key: PG_DATABASE
-        volumeMounts:
-          - name: postgres-db-volume
-            mountPath: /var/lib/postgres
+        - name: postgres
+          image: bitnami/postgresql:10
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgredb
+      volumes:
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim

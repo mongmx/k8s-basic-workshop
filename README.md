@@ -10,9 +10,17 @@ minikube addons enable ingress
 
 kubectl create namespace myapp-ns 
 kubectl config set-context --current --namespace=myapp-ns
-kubectl apply -f backend-configmap.yaml -n myapp-ns
-kubectl apply -f backend-deployment.yaml -n myapp-ns
-kubectl apply -f backend-service.yaml -n myapp-ns
+
+kubectl apply -k ./db -n myapp-n
+
+kubectl apply -f ./backend-configmap.yaml -n myapp-ns
+kubectl apply -f ./backend-deployment.yaml -n myapp-ns
+kubectl apply -f ./backend-service.yaml -n myapp-ns
+
+or
+
+kubectl apply -k ./backend -n myapp-ns
+
 kubectl apply -f ingress.yaml
 
 minikube ip
