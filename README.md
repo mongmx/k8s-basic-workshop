@@ -49,3 +49,13 @@ kubectl rollout history deployment backend-depl
 
 kubectl rollout undo deployment backend-depl (--to-revision=1)
 ```
+
+inspire by
+
+[https://github.com/thetkpark/golang-todos](https://github.com/thetkpark/golang-todos)
+
+[https://github.com/thetkpark/argo-cd-example](https://github.com/thetkpark/argo-cd-example)
+
+[มาลองทำ GitOps ด้วย ArgoCD](https://blog.sethanantp.com/try-gitops-with-argocd/)
+
+[How to Deploy to Kubernetes using Argo CD and GitOps](https://www.digitalocean.com/community/tutorials/how-to-deploy-to-kubernetes-using-argo-cd-and-gitops)
